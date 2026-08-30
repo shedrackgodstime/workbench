@@ -26,6 +26,7 @@ tags:
   - Tag1
   - Tag2
 started: "YYYY-MM"
+updated: "YYYY-MM"
 context: "Optional longer context shown as a callout box."
 source: "https://github.com/user/repo"
 ---
@@ -41,6 +42,7 @@ source: "https://github.com/user/repo"
 | `status`   | yes      | `draft`, `active`, `completed`, `archived`             |
 | `tags`     | yes      | Array of strings. Shown as chips on cards + header     |
 | `started`  | no       | `YYYY-MM` format. Used for sorting (newest first)     |
+| `updated`  | no       | `YYYY-MM` format. Last content update. Overrides `started` for sitemap `lastmod` + RSS dates |
 | `context`  | no       | Longer description. Shown as "Record Context" box      |
 | `source`   | no       | URL to project repo. Shown as "Source ↗" chip          |
 
@@ -85,6 +87,7 @@ tags:
   - Protocols
   - Infrastructure
 started: "2025-03"
+updated: "2025-08"
 context: A deep dive into STUN/TURN, ICE protocols, hole punching, and peer connectivity across constrained network boundaries.
 source: https://github.com/shedrackgodstime/nat-traversal
 ---
@@ -121,6 +124,7 @@ NAT traversal is one of the hardest problems in networking...
 - [ ] `type` is either `project` or `exploration`
 - [ ] `status` is one of: `draft`, `active`, `completed`, `archived`
 - [ ] `started` is `YYYY-MM` format (if included)
+- [ ] `updated` is `YYYY-MM` format (if included)
 - [ ] `source` is a valid URL (if included)
 - [ ] Markdown body is the full public narrative
 - [ ] Entry can stand on its own without external context
