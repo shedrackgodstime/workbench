@@ -2,7 +2,7 @@
 title: irosh - Secure P2P SSH
 summary: A standalone peer-to-peer SSH tool and library written in Rust, built on Iroh to eliminate public IPs, open ports, and centralized accounts.
 type: project
-status: draft
+status: active
 tags:
   - Rust
   - P2P
