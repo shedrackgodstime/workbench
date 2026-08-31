@@ -51,7 +51,7 @@ graph TD
 
 ## Core Subsystems
 
-- **P2P Transport (`irosh::transport`):** Built on Iroh's QUIC implementation for automatic UDP hole punching and DERP relay fallback across restrictive NATs.
+- **P2P Transport (`irosh::transport`):** Built on Iroh's QUIC implementation for automatic UDP hole punching, connection migration across roaming networks, and DERP relay fallback across restrictive NATs.
 - **Discovery (`irosh::discovery`):** Uses Pkarr to publish Ed25519 node identities to the Mainline DHT, generating ephemeral 3-word pairing phrases (e.g. `apple-pie-sunset`).
 - **Standalone SSH Server (`irosh::server`):** Native SSH server in pure Rust via `russh` and `portable-pty`. Operates without OpenSSH daemon dependencies.
 - **Escape Toolkit (`irosh::session`):** Out-of-band multiplexed escape sequences (`~.`, `~put`, `~get`, `~C`) for inline file transfers and diagnostics over the active connection.
