@@ -9,49 +9,13 @@ on:
       - 'explorations/**/README.md'
 
 jobs:
-  check-and-trigger:
+  notify-portfolio:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Inspect changed README files for published status
-        id: check_status
-        run: |
-          # Get list of changed README files in this push
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '^(projects|explorations)/.*/README\.md$' || true)
-          
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "No workbench README files modified."
-            echo "should_trigger=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "Changed records:"
-          echo "$CHANGED_FILES"
-
-          SHOULD_TRIGGER=false
-          for file in $CHANGED_FILES; do
-            if [ -f "$file" ]; then
-              # Check if status is explicitly 'draft'
-              if grep -qE '^status:\s*draft' "$file"; then
-                echo "Skipping draft record: $file"
-              else
-                echo "Found published record: $file"
-                SHOULD_TRIGGER=true
-              fi
-            fi
-          done
-
-          echo "should_trigger=$SHOULD_TRIGGER" >> $GITHUB_OUTPUT
-
       - name: Trigger Portfolio Deploy
-        if: steps.check_status.outputs.should_trigger == 'true'
         run: |
-          echo "Triggering portfolio build via repository_dispatch..."
-          curl -X POST \
+          echo "Public workbench entry changed — triggering portfolio synchronization..."
+          curl -f -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.PORTFOLIO_TRIGGER_TOKEN }}" \
             https://api.github.com/repos/shedrackgodstime/shedrackgodstime/dispatches \
