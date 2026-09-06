@@ -11,8 +11,7 @@ tags:
   - Axum
   - Security
   - Argon2
-started: "2025-08"
-updated: "2026-09"
+started: "2026-09"
 context: "No existing auth library for Dioxus separated the security-critical parts (password hashing, session lifecycle, cookie handling) from the application's own data model. dioxus-auth handles the former through trait boundaries. The application never has to adopt a specific schema, ORM, or database to use it."
 source: "https://github.com/shedrackgodstime/dioxus-auth"
 ---
